@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "MemoryAllocator.h"
 
-#define sMalloc(...) var_f((f_args){__VA_ARGS__})
+#define sMalloc(...) var_sMalloc((sMalloc_args){__VA_ARGS__})
 
 int main(void)
 {

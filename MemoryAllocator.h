@@ -10,6 +10,6 @@ typedef struct
 {
     uint32_t size;
     bool FULLCACHELINES;
-} f_args;
+} sMalloc_args;
 
-void* var_f(f_args in);
+void* var_sMalloc(sMalloc_args in);

@@ -21,7 +21,7 @@ void sFree(void* memoryRegion)
     munmap((void*)plen, len); //Free the memory
 }
 
-void* var_f(f_args in)
+void* var_sMalloc(sMalloc_args in)
 {
     uint32_t size = in.size ? in.size : 0;
     bool FULLCACHELINES = in.FULLCACHELINES;

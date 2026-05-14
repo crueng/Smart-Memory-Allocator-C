@@ -20,3 +20,10 @@ void sFree(void* memoryRegion)
     int len = *plen; //Reading the length of the memory
     munmap((void*)plen, len); //Free the memory
 }
+
+void* var_f(f_args in)
+{
+    uint32_t size = in.size ? in.size : 0;
+    bool FULLCACHELINES = in.FULLCACHELINES;
+    return sMalloc(size, FULLCACHELINES);
+}

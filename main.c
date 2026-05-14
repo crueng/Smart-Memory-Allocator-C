@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include "MemoryAllocator.h"
+
+#define sMalloc(...) var_f((f_args){__VA_ARGS__})
+
 int main(void)
 {
     int* number = sMalloc(sizeof(int), false);

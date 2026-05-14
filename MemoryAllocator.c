@@ -17,9 +17,7 @@ void* sMalloc(uint32_t size, bool FULLCACHELINES)
     }
     else
     {
-        void* p = NULL;
-        posix_memalign(&p, 64, size);
-        plen = mmap(p, size, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
+        posix_memalign((void*)&plen, 64, size);
     }
 
     return (void*)(&plen[1]);

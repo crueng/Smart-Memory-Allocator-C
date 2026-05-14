@@ -12,4 +12,12 @@ int main(void)
     printf("%d\n", *number);
     sFree(number);
     number = NULL;
+
+    int* numberAllignt = sMalloc(sizeof(int), true);
+    *numberAllignt = 42;
+    printf("%d\n", *numberAllignt);
+    *numberAllignt += 1;
+    printf("%d\n", *numberAllignt);
+    sFree(numberAllignt);
+    numberAllignt = NULL;
 }

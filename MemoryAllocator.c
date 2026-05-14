@@ -1,14 +1,26 @@
 #include "MemoryAllocator.h"
 #include <stdlib.h>
 #include <sys/mman.h>
+#include <stdalign.h>
+#include <stddef.h>
+#include <sys/sysctl.h>
 
 void* sMalloc(uint32_t size, bool FULLCACHELINES)
 {
     int* plen;
     uint16_t len = size + sizeof(size); //Add sizeof(size) for holding length
 
-    plen = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
-    *plen = len;
+    if (!FULLCACHELINES)
+    {
+        plen = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
+        *plen = len;
+    }
+    else
+    {
+        void* p = NULL;
+        posix_memalign(&p, 64, size);
+        plen = mmap(p, size, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
+    }
 
     return (void*)(&plen[1]);
 }
